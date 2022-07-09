@@ -7,13 +7,27 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class RegisterViewController: UIViewController {
-
+    
     @IBOutlet weak var emailTextfield: UITextField!
     @IBOutlet weak var passwordTextfield: UITextField!
     
     @IBAction func registerPressed(_ sender: UIButton) {
+        if let email = emailTextfield.text, let password = passwordTextfield.text {Auth.auth().createUser(withEmail: email,  password: password) { authResult, error in
+            
+            if let error = error{
+                print(error.localizedDescription)
+            }else {
+                //tem que ser o identifcador dessa segue
+                //ela vai apontar para a tela de chat
+                self.performSegue(withIdentifier: "RegisterChart", sender: self)
+            }
+        }
+        }
+        
+        
     }
     
 }
