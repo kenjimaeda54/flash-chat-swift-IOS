@@ -22,7 +22,7 @@ class RegisterViewController: UIViewController {
             }else {
                 //tem que ser o identifcador dessa segue
                 //ela vai apontar para a tela de chat
-                self.performSegue(withIdentifier: "RegisterChart", sender: self)
+                self.performSegue(withIdentifier: K.registerSegue, sender: self)
             }
         }
         }
