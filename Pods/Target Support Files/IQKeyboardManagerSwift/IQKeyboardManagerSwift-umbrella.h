@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double CLTypingLabelVersionNumber;
-FOUNDATION_EXPORT const unsigned char CLTypingLabelVersionString[];
+FOUNDATION_EXPORT double IQKeyboardManagerSwiftVersionNumber;
+FOUNDATION_EXPORT const unsigned char IQKeyboardManagerSwiftVersionString[];
 
