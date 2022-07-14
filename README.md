@@ -1,8 +1,8 @@
 # Flash chat
 App de conversa com recursos simples
 
-## Motivacao
-Praticar novos conceitos em  swift e reforcar os anteriores.
+## Motivação
+Pratica novos conceitos em  swift  como: Cocoapods,TableView,navigation controller e  reforçar os anteriores.
 
 
 ## Feature
