@@ -1,55 +1,69 @@
-![App Brewery Banner](Documentation/AppBreweryBanner.png)
+# Flash chat
+App de conversa com recursos simples
 
-# Flash-Chat
-
-## Our Goal
-
-One of the most fundamental component of modern iOS apps is the Table View. Table Views are used everywhere from the Mail app to the Messages app. It’s a crucial part of every iOS developer’s tool belt. In this tutorial we’ll be getting to grips with Table Views, creating custom cells, and making our own cloud-based backend database. It’s going to be epic, so buckle up.
-
-## What you will create
-
-Flash Chat is an internet based messaging app similar to WhatsApp, the popular messaging app that was bought by Facebook for $22 billion. We will be using a service called Firebase Firestore as a backend database to store and retrieve our messages from the cloud. 
-
-## What you will learn
-
-* How to integrate third party libraries in your app using Cocoapods and Swift Package Manager.
-* How to store data in the cloud using Firebase Firestore.
-* How to query and sort the Firebase database.
-* How to use Firebase for user authentication, registration and login.
-* How to work with UITableViews and how to set their data sources and delegates.
-* How to create custom views using .xib files to modify native design components.
-* How to embed View Controllers in a Navigation Controller and understand the navigation stack.
-* How to create a constants file and use static properties to store Strings and other constants.
-* Learn about Swift loops and create animations using loops.
-* Learn about the App Lifecycle and how to use viewWillAppear or viewWillDisappear.
-* How to create direct Segues for navigation.
+## Motivacao
+Praticar novos conceitos em  swift e reforcar os anteriores.
 
 
-# Constants
+## Feature
+- Aprendi o uso do .xib
+- Este recurso e útil para criar views customizadas, apliquei no table view
+- Para conectar o table view com o .xib utiliza o método register com objeto UINib
+- nibName e o mesmo que foi colocado do arquivo .xib.  ForceCellReuseIdentifier e nome do componente 
+
+```swift
+
+tableView.register(UINib(nibName: K.cellNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
+
 ```
-struct K {
-    static let cellIdentifier = "ReusableCell"
-    static let cellNibName = "MessageCell"
-    static let registerSegue = "RegisterToChat"
-    static let loginSegue = "LoginToChat"
-    
-    struct BrandColors {
-        static let purple = "BrandPurple"
-        static let lightPurple = "BrandLightPurple"
-        static let blue = "BrandBlue"
-        static let lighBlue = "BrandLightBlue"
-    }
-    
-    struct FStore {
-        static let collectionName = "messages"
-        static let senderField = "sender"
-        static let bodyField = "body"
-        static let dateField = "date"
-    }
+
+## 
+- Aprendi o uso de gerenciamento de pacotes com [Cocoapods](https://cocoapods.org/)
+- Apos iniciar o cocoapods no projeto precisa desenvolver a partir do arquivo com extensão   ...x worskpace, normalmente e branco
+- O gerenciamento do pacote fica por conta do arquivo PodFile
+- Integração do [Firebase](https://firebase.google.com/docs/ios/setup) foi neste arquivo
+
+
+```swift
+platform :ios, '10.0'
+
+target 'Flash Chat iOS13' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Flash Chat iOS13
+  pod 'FirebaseAuth'
+  pod 'FirebaseFirestore'
+  pod 'IQKeyboardManagerSwift', '6.3.0'
+
+
+end
+
+```
+##
+- Usei performSegue para navegação, identificador da segue  nome que interliga as telas
+- Utilizei stack navigation no projeto
+- Para integrar essa navegação precisa Navigation Controller
+- Para esconder o botão back que vem integrado precisa do método hidesBackButton
+- Esse método fica disponível ao  integrar navigation stack
+- Precisa lembrar sempre está usando requisições background precisa  do método DispatchQueue
+- Para atualizar o tableView apos um dado for inserido precisa fazer um reloadData no table view
+- Para retornar de uma tela para principal usa o método popToRootViewController
+
+```swift
+//background
+DispatchQueue.main.async {
+    self.tableView.reloadData()					
+    let indexPath = IndexPath(row: self.message.count - 1 , section: 0)
+    self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
 }
 
+//esconder back
+navigationItem.hidesBackButton = true
+
+//retornar ao root
+navigationController?.popToRootViewController(animated: true)
+
 ```
 
->This is a companion project to The App Brewery's Complete App Developement Bootcamp, check out the full course at [www.appbrewery.co](https://www.appbrewery.co/)
 
-![End Banner](Documentation/readme-end-banner.png)
