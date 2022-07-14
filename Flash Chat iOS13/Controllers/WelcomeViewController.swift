@@ -10,14 +10,16 @@ import UIKit
 
 
 class WelcomeViewController: UIViewController {
-    
-    @IBOutlet weak var titleLabel: UILabel!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        titleLabel.text = K.appName
-        
-    }
-    
-    
+	
+	//ciclo de vida
+	//https://medium.com/good-morning-swift/ios-view-controller-life-cycle-2a0f02e74ff5
+	@IBOutlet weak var titleLabel: UILabel!
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		titleLabel.text = K.appName
+		
+	}
+	
+	
 }
